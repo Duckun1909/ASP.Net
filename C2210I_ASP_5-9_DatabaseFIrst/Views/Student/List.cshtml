@@ -1,0 +1,35 @@
+﻿
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@model IPagedList<Student>
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+<form>
+    <input type="text"/>
+    <button type="submit">Search</button>
+</form>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.ActionLink("ID", "List", new{sortType = @ViewBag.sortType == "ASC" ? "DESC": "ASC", search = @ViewBag.search, sortBy = @ViewBag.sortBy})</th>
+            <th>@Html.ActionLink("Name", "List", new{sortType = @ViewBag.sortType == "ASC" ? "DESC": "ASC", search = @ViewBag.search, sortBy = @ViewBag.sortBy})</th>
+            <th>@Html.ActionLink("Age", "List", new{sortType = @ViewBag.sortType == "ASC" ? "DESC": "ASC", search = @ViewBag.search, sortBy = @ViewBag.sortBy})</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var s in @Model)
+        {
+            <tr>
+                <td>@s.Id</td>
+                <td>@s.Name</td>
+                <td>@s.Age</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.ActionLink("Delete", "DeleteStudent", new { id = st.Id }, new { onclick = "return confirm('Are sure wants to delete?');" } )
