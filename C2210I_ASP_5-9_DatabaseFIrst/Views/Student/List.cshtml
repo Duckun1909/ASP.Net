@@ -32,4 +32,4 @@
         }
     </tbody>
 </table>
-@Html.ActionLink("Delete", "DeleteStudent", new { id = st.Id }, new { onclick = "return confirm('Are sure wants to delete?');" } )
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }));
